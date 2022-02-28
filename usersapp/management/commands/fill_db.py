@@ -23,4 +23,4 @@ class Command(BaseCommand):
                 email=new_user['email'],
             ).save()
 
-    super_user = User.objects.create_superuser('admin', 'admin@local.host', 'admin')
+        User.objects.create_superuser('admin', 'admin@local.host', 'admin')
