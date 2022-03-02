@@ -3,7 +3,6 @@ import React from 'react';
 import './App.css';
 import UserList from "./components/Users";
 import axios from "axios";
-import Header from "./components/Header";
 
 class App extends React.Component {
     constructor(props) {
@@ -32,19 +31,18 @@ class App extends React.Component {
         axios.get('http://127.0.0.1:8000/api/usersapp/').then(response => {
             const users = response.data;
             this.setState({'users': users});
-        }).catch(
-            error => console.log(error)
-        );
+            }).catch(
+                error => console.log(error)
+            );
     }
 
     render() {
         return (
             <div>
-                <Header />
-                <UserList users={this.state.users}/>
+                <UserList users={this.state.users} />
             </div>
         )
     }
 }
 
-export default App;
+    export default App;
