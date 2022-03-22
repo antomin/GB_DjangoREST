@@ -25,9 +25,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header/>
                 <UserList users={this.state.users}/>
-                <Footer />
+                <Footer/>
             </div>
         )
     }

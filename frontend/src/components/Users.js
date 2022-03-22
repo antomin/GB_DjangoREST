@@ -15,17 +15,17 @@ const UserList = ({users}) => {
         <div className="container">
             <table className="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Имя пользователя</th>
-                        <th>Имя</th>
-                        <th>Фамилия</th>
-                        <th>Эл. почта</th>
-                    </tr>
+                <tr>
+                    <th>Имя пользователя</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Эл. почта</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {users.map((user) => <UserItem user={user}/>)}
+                {users.map((user) => <UserItem user={user}/>)}
                 </tbody>
-             </table>
+            </table>
         </div>
     );
 };
