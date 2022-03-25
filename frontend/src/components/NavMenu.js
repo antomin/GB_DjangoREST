@@ -1,4 +1,4 @@
-import {faDiagramProject, faListCheck, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {faDiagramProject, faListCheck, faUsers, faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const NavMenu = () => {
@@ -19,7 +19,7 @@ const NavMenu = () => {
                 </ul>
                 <div className="d-flex align-items-center w-50">
                     <form className="w-100 mb-1">
-                        <input type="search" className="form-control" placeholder="Search..."aria-label="Search"/>
+                        <input type="search" className="form-control" placeholder="Поиск..." aria-label="Search"/>
                     </form>
 
                     {/*<div className="flex-shrink-0 dropdown">*/}
