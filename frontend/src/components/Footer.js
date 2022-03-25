@@ -1,5 +1,5 @@
-import {faCopyright} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCopyright} from "@fortawesome/free-solid-svg-icons";
 
 const NowYear = () => {
     const CurrentDate = new Date();

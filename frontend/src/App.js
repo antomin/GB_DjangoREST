@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
-import Header from "./components/Header";
+import NavMenu from "./components/NavMenu";
 import Footer from "./components/Footer";
 import UserList from "./components/Users";
 
@@ -25,7 +25,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header/>
+                <NavMenu/>
                 <UserList users={this.state.users}/>
                 <Footer/>
             </div>
