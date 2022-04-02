@@ -1,10 +1,12 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const ProjectItem = ({project}) => {
     return (
         <tr>
-            <td>{project.name}</td>
-            <td>{project.repoUrl}</td>
+            <td>
+                <Link className="text-decoration-none text-dark" to={`/project/${project.id}`}>{project.name}</Link>
+            </td>
         </tr>
     );
 };
@@ -16,7 +18,6 @@ const ProjectList = ({projects}) => {
                 <thead>
                 <tr>
                     <th>Проект</th>
-                    <th>Репозиторий</th>
                 </tr>
                 </thead>
                 <tbody>

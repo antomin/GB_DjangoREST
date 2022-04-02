@@ -1,5 +1,8 @@
-import {faDiagramProject, faListCheck, faUsers, faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import {NavLink, Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDiagramProject, faListCheck, faUsers} from "@fortawesome/free-solid-svg-icons";
+
 
 const NavMenu = () => {
     return (
@@ -7,20 +10,27 @@ const NavMenu = () => {
             <div className="container">
                 <ul className="nav nav-tabs nav-dark">
                     <li className="nav-item">
-                        <a className="nav-link active" href="#"><FontAwesomeIcon icon={faUsers}/> Пользователи</a>
-                    </li>
-                    <li className="nav-item navbar-dark">
-                        <a className="nav-link text-light" href="#"><FontAwesomeIcon
-                            icon={faDiagramProject}/> Проекты</a>
+                        <Link to="/" className="nav-link text-light" activeClassName="nav-link active">
+                            <FontAwesomeIcon icon={faUsers}/> Пользователи
+                        </Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-light" href="#"><FontAwesomeIcon icon={faListCheck}/> ToDo</a>
+                        <Link to="/projects" className="nav-link text-light" activeClassName="nav-link active">
+                            <FontAwesomeIcon icon={faDiagramProject}/> Проекты
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/todo" className="nav-link text-light" activeClassName="nav-link active">
+                            <FontAwesomeIcon icon={faListCheck}/> ToDo
+                        </Link>
                     </li>
                 </ul>
                 <div className="d-flex align-items-center w-50">
                     <form className="w-100 mb-1">
                         <input type="search" className="form-control" placeholder="Поиск..." aria-label="Search"/>
                     </form>
+
+                    {/*Auth menu*/}
 
                     {/*<div className="flex-shrink-0 dropdown">*/}
                     {/*    <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle"*/}
@@ -38,6 +48,7 @@ const NavMenu = () => {
                     {/*        <li><a className="dropdown-item" href="#">Sign out</a></li>*/}
                     {/*    </ul>*/}
                     {/*</div>*/}
+
                 </div>
             </div>
         </nav>

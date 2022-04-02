@@ -1,13 +1,16 @@
 import React from "react";
 
 const TodoItem = ({task}) => {
+    // const createdTime = format(task.createdAt, "H:mm, dd/MM/YYYY")
+    // const updatedTime = format(task.updatedAt, "H:mm, dd/MM/YYYY")
+
     return (
         <tr>
-            <td>task.project</td>
-            <td>task.author</td>
-            <td>task.createdAt</td>
-            <td>task.updatedAt</td>
-            <td>task.isActive</td>
+            <td>{task.project}</td>
+            <td>{task.author}</td>
+            <td>{task.createdAt}</td>
+            <td>{task.updatedAt}</td>
+            <td>{task.isActive}</td>
         </tr>
     );
 };
