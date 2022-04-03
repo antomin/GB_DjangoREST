@@ -10,19 +10,20 @@ const NavMenu = () => {
             <div className="container">
                 <ul className="nav nav-tabs nav-dark">
                     <li className="nav-item">
-                        <Link to="/" className="nav-link text-light" activeClassName="nav-link active">
+                        <NavLink exact to="/" className="nav-link text-light" activeClassName="active text-dark">
+                            {/*className={isActive => "nav-link" + (!isActive ? " text-light" : " active")}*/}
                             <FontAwesomeIcon icon={faUsers}/> Пользователи
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link to="/projects" className="nav-link text-light" activeClassName="nav-link active">
+                        <NavLink exact to="/projects" className="nav-link text-light" activeClassName="active text-dark">
                             <FontAwesomeIcon icon={faDiagramProject}/> Проекты
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link to="/todo" className="nav-link text-light" activeClassName="nav-link active">
+                        <NavLink exact to="/todo" className="nav-link text-light" activeClassName="active text-dark">
                             <FontAwesomeIcon icon={faListCheck}/> ToDo
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
                 <div className="d-flex align-items-center w-50">
