@@ -5,7 +5,7 @@ const ProjectItem = ({project}) => {
     return (
         <tr>
             <td>
-                <Link className="text-decoration-none text-dark" to={`/project/${project.id}`}>{project.name}</Link>
+                <Link className="text-decoration-none text-dark" to={`/projects/${project.id}`}>{project.name}</Link>
             </td>
         </tr>
     );

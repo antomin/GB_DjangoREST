@@ -53,7 +53,7 @@ class App extends React.Component {
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todo' component={() => <TodoList tasks={this.state.todo}/>}/>
 
-                        <Route path='/project/:id' component={() => <ProjectInfo projects={this.state.projects}/>}/>
+                        <Route path='/projects/:projectId' component={() => <ProjectInfo projects={this.state.projects}/>}/>
 
                         <Route component={() => <NotFound404/>}/>
                     </Switch>
