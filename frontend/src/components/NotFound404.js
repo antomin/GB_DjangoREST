@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHome} from "@fortawesome/free-solid-svg-icons";
 
 const NotFound404 = () => {
     return (
@@ -15,7 +17,9 @@ const NotFound404 = () => {
                             Извините, произошла ошибка! Запрашиваемая страница не найдена!
                         </div>
                         <div className="error-actions mt-2">
-                            <Link to="/" className="btn btn-primary btn-lg">Домой</Link>
+                            <Link exact to="/" className="btn btn-primary btn-lg bg-dark">
+                                <FontAwesomeIcon icon={faHome}/> Домой
+                            </Link>
                         </div>
                     </div>
                 </div>

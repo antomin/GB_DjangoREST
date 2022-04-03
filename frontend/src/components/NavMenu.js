@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink, Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDiagramProject, faListCheck, faUsers} from "@fortawesome/free-solid-svg-icons";
 
@@ -11,7 +11,6 @@ const NavMenu = () => {
                 <ul className="nav nav-tabs nav-dark">
                     <li className="nav-item">
                         <NavLink exact to="/" className="nav-link text-light" activeClassName="active text-dark">
-                            {/*className={isActive => "nav-link" + (!isActive ? " text-light" : " active")}*/}
                             <FontAwesomeIcon icon={faUsers}/> Пользователи
                         </NavLink>
                     </li>
