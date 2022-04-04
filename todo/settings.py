@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     'usersapp',
     'todoapp',
+    # 'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -150,10 +151,15 @@ REST_FRAMEWORK = {
 
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ]
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 
 
 
-# from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
+# from rest_framework.authentication import TokenAuthentication
