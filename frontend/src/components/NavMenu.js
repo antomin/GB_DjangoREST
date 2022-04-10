@@ -4,16 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDiagramProject, faListCheck, faUsers, faUser} from "@fortawesome/free-solid-svg-icons";
 
 
-const NavMenu = (is_auth, log_out) => {
-    let login_logout_btn;
-    if (is_auth) {
-        login_logout_btn = <button className="nav-link text-light" onClick={log_out}><FontAwesomeIcon icon={faUser}/> Logout</button>;
-        console.log('Y');
-    } else {
-        login_logout_btn = <NavLink exact to="/login" className="nav-link text-light" activeClassName="active text-dark"><FontAwesomeIcon icon={faUser}/> Login</NavLink>;
-        console.log('N');
-    }
-
+const NavMenu = ({auth, logout}) => {
     return (
         <nav className="navbar navbar-dark bg-dark pb-0 mb-4 text-white">
             <div className="container">
@@ -42,15 +33,13 @@ const NavMenu = (is_auth, log_out) => {
                 </div>
                 <ul className="nav nav-tabs nav-dark">
                     <li className="nav-item">
-                        {login_logout_btn}
-                        {/*{is_authenticated*/}
-                        {/*    ? <button className="nav-link text-light" onClick={}>*/}
-                        {/*        <FontAwesomeIcon icon={faUser}/> Logout*/}
-                        {/*    </button>*/}
-                        {/*    : <NavLink exact to="/login" className="nav-link text-light"*/}
-                        {/*               activeClassName="active text-dark">*/}
-                        {/*        <FontAwesomeIcon icon={faUser}/> Login*/}
-                        {/*    </NavLink>}*/}
+                        {auth.is_auth
+                        ? <button className="nav-link text-light" onClick={logout}>
+                            <FontAwesomeIcon icon={faUser}/> Logout ({auth.username})
+                        </button>
+                        : <NavLink exact to="/login" className="nav-link text-light" activeClassName="active text-dark">
+                            <FontAwesomeIcon icon={faUser}/> Login
+                        </NavLink>}
                     </li>
                 </ul>
             </div>

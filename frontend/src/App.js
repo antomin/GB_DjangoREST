@@ -19,7 +19,8 @@ class App extends React.Component {
             'users': [],
             'projects': [],
             'todo': [],
-            'token': ''
+            'token': '',
+            'auth': {'username': '', 'is_auth': false}
         };
     }
 
@@ -50,47 +51,48 @@ class App extends React.Component {
         this.load_data()
     }
 
-    set_token(token) {
+    set_token(login, access, refresh) {
         const cookies = new Cookies();
-        cookies.set({'token': token});
-        this.setState({'token': token}, () => this.load_data());
+        cookies.set({
+            'login': login,
+            'access': access,
+            'refresh': refresh
+        });
     }
 
-    is_authenticated() {
-        return this.state.token !== '';
+    login(username, password) {
+        axios.post('http://127.0.0.1:8000/api/token/', {'username': username, 'password': password})
+            .then(response => {
+                    // const result = response.data
+                    const access = response.data.access;
+                    const refresh = response.data.refresh;
+                    this.set_token(username, access, refresh);
+                    this.setState({'auth': {'username': username, 'is_auth': true}});
+                    this.load_data();
+                }
+            ).catch(
+            error => alert('Неверный логин или пароль')
+        );
     }
 
     logout() {
-        this.set_token('');
+        this.set_token('', '', '');
+        this.setState({'auth': {'username': '', 'is_auth': false}});
         console.log('logoutApp');
-    }
-
-    get_token_from_storage() {
-        const cookies = new Cookies();
-        const token = cookies.get('token')
-        this.setState({'token': token})
-    }
-
-    get_token(username, password) {
-        axios.post('http://127.0.0.1:8000/api-token-auth/', {'username': username, 'password': password}).then(
-            response => this.set_token(response.data['token'])
-        ).catch(
-            error => alert('Неверный логин или пароль')
-        );
     }
 
     render() {
         return (
             <div>
                 <BrowserRouter>
-                    <NavMenu is_auth={this.is_authenticated} log_out={this.logout}/>
+                    <NavMenu auth={this.state.auth} logout={() => this.logout()}/>
                     <Switch>
                         <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                         <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todo' component={() => <TodoList tasks={this.state.todo}/>}/>
 
                         <Route exact path='/login' component={() => <LoginForm
-                            get_token={(username, password) => this.get_token(username, password)}/>}/>
+                            login={(username, password) => this.login(username, password)}/>}/>
 
                         <Route path='/projects/:projectId'
                                component={() => <ProjectInfo projects={this.state.projects}/>}/>
