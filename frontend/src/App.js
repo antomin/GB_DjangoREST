@@ -53,26 +53,21 @@ class App extends React.Component {
 
     set_token(login, access, refresh) {
         const cookies = new Cookies();
-        cookies.set({
-            'login': login,
-            'access': access,
-            'refresh': refresh
-        });
+        cookies.set('login', login);
+        cookies.set('access', access);
+        cookies.set('refresh', refresh);
     }
 
     login(username, password) {
         axios.post('http://127.0.0.1:8000/api/token/', {'username': username, 'password': password})
             .then(response => {
-                    // const result = response.data
-                    const access = response.data.access;
-                    const refresh = response.data.refresh;
+                    const access = response.data['access'];
+                    const refresh = response.data['refresh'];
                     this.set_token(username, access, refresh);
                     this.setState({'auth': {'username': username, 'is_auth': true}});
                     this.load_data();
                 }
-            ).catch(
-            error => alert('Неверный логин или пароль')
-        );
+            ).catch(() => alert('Неверный логин или пароль'));
     }
 
     logout() {
