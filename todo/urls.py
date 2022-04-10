@@ -11,7 +11,7 @@ import usersapp.views as usersapp
 router = DefaultRouter()
 router.register('users', usersapp.UserModelViewSet)
 router.register('projects', todoapp.ProjectCustomDjangoFilterModelViewSet)
-router.register('todo', todoapp.ToDoCastomDjangoFilterModelViewSet)
+router.register('todo', todoapp.ToDoCustomDjangoFilterModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
