@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django_filters',
     'usersapp',
     'todoapp',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -159,3 +160,5 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication'
     ],
 }
+
+# from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly

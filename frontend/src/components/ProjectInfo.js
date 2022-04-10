@@ -1,9 +1,9 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 
-const UsersList = (user) => {
-    return (<div>{user}</div>);
-};
+// const UsersList = (user) => {
+//     return (<div>{user}</div>);
+// };
 
 const ProjectInfo = (projects) => {
     const {projectId} = useParams();
@@ -37,7 +37,7 @@ const ProjectInfo = (projects) => {
                     <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
                          data-bs-parent="#accordionExample">
                         <div className="accordion-body">
-                            <a href="#">{project.repoUrl}</a>
+                            <a href={project.repoUrl} target="_blank" rel="noreferrer">{project.repoUrl}</a>
                         </div>
                     </div>
                 </div>
