@@ -39,9 +39,10 @@ class TestUserViewSet(TestCase):
         response = client.put(f'{self.url}{user.id}/', self.user_put)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
+    # Не работает авторизация
     # def test_update_admin(self) -> None:
     #     user = User.objects.create(**self.user_data)
     #     client = APIClient()
-    #     client.login(username=self.admin_login, password=self.admin_pass)
+    #     client.login(username='self.admin_login', password=self.admin_pass)
     #     response = client.put(f'{self.url}{user.id}/', self.user_put)
     #     self.assertEqual(response.status_code, status.HTTP_200_OK)
