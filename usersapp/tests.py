@@ -1,15 +1,15 @@
 from django.test import TestCase
-from usersapp.models import User
 from rest_framework import status
-from rest_framework.test import APIRequestFactory, APIClient
+from rest_framework.test import APIClient, APIRequestFactory
 
+from usersapp.models import User
 from usersapp.views import UserModelViewSet
 
 
 class TestUserViewSet(TestCase):
     def setUp(self) -> None:
         self.admin_login = 'admin'
-        self.admin_pass = 'admin'
+        self.admin_pass = 'Admin123456'
         self.admin_email = 'admin@admin.admin'
         self.admin = User.objects.create_superuser(
             username=self.admin_login,
@@ -25,6 +25,12 @@ class TestUserViewSet(TestCase):
         request = factory.get(self.url)
         view = UserModelViewSet.as_view({'get': 'list'})
         response = view(request)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_get_detail(self) -> None:
+        new_user = User.objects.create(**self.user_data)
+        client = APIClient()
+        response = client.get(f'{self.url}{new_user.id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_guest(self) -> None:
