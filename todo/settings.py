@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -165,4 +166,6 @@ REST_FRAMEWORK = {
     'VERSION_PARAM': 'v',
 }
 
-# from rest_framework.versioning import QueryParameterVersioning
+GRAPHENE = {
+    'SCHEMA': 'todo.schema.schema'
+}
