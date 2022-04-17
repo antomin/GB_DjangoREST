@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'todoapp',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -159,6 +160,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
+
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+    'VERSION_PARAM': 'v',
 }
 
-# from rest_framework.authentication import BaseAuthentication
+# from rest_framework.versioning import QueryParameterVersioning
