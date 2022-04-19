@@ -94,13 +94,23 @@ class App extends React.Component {
         this.setState({'auth': {'username': '', 'is_auth': false}});
     }
 
+    deleteProject(id) {
+        const headers = this.get_headers();
+        axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers}).then(
+            () => this.load_data()
+        ).catch(
+            error => console.log(error)
+        );
+    }
+
     render() {
         return (<div>
             <BrowserRouter>
                 <NavMenu auth={this.state.auth} logout={() => this.logout()}/>
                 <Switch>
                     <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
-                    <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
+                    <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}
+                                                                                deleteProject={(id) => this.deleteProject(id)}/>}/>
                     <Route exact path='/todo' component={() => <TodoList tasks={this.state.todo}/>}/>
 
                     <Route exact path='/login' component={() => <LoginForm
