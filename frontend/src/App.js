@@ -132,7 +132,7 @@ class App extends React.Component {
                         createProject={(name, users, repo_url) => this.createProject(name, users, repo_url)}/>}/>
 
                     <Route path='/projects/:projectId'
-                           component={() => <ProjectInfo projects={this.state.projects}/>}/>
+                           component={() => <ProjectInfo projects={this.state.projects} users={this.state.users}/>}/>
 
                     <Route component={NotFound404}/>
                 </Switch>
