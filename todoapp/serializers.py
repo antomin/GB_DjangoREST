@@ -4,8 +4,8 @@ from todoapp.models import Project, ToDo
 
 
 class ProjectSerializer(ModelSerializer):
-    users = StringRelatedField(many=True)
-    admin_user = StringRelatedField()
+    # users = StringRelatedField(many=True)
+    # admin_user = StringRelatedField()
 
     class Meta:
         model = Project
@@ -13,8 +13,8 @@ class ProjectSerializer(ModelSerializer):
 
 
 class ToDoSerializer(ModelSerializer):
-    project = StringRelatedField()
-    author = StringRelatedField()
+    # project = StringRelatedField()
+    # author = StringRelatedField()
 
     class Meta:
         model = ToDo

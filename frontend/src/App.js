@@ -11,6 +11,7 @@ import NotFound404 from "./components/NotFound404";
 import ProjectInfo from "./components/ProjectInfo";
 import LoginForm from "./components/Auth"
 import Cookies from "universal-cookie";
+import ProjectForm from "./components/ProjectForm";
 
 class App extends React.Component {
     constructor(props) {
@@ -103,6 +104,17 @@ class App extends React.Component {
         );
     }
 
+    createProject(name, users, repo_url) {
+        const headers = this.get_headers();
+        const admin_user = this.state.users.filter((user) => user.username === this.state.auth.username)
+        const data = {name: name, admin_user: admin_user[0].id, users: [Number(users)], repo_url: repo_url}
+        axios.post('http://127.0.0.1:8000/api/projects/', data, {headers}).then(
+            () => this.load_data()
+        ).catch(
+            error => console.log(error)
+        )
+    }
+
     render() {
         return (<div>
             <BrowserRouter>
@@ -115,6 +127,9 @@ class App extends React.Component {
 
                     <Route exact path='/login' component={() => <LoginForm
                         login={(username, password) => this.login(username, password)}/>}/>
+
+                    <Route exact path='/projects/create' component={() => <ProjectForm
+                        createProject={(name, users, repo_url) => this.createProject(name, users, repo_url)}/>}/>
 
                     <Route path='/projects/:projectId'
                            component={() => <ProjectInfo projects={this.state.projects}/>}/>

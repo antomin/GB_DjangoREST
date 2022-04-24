@@ -1,9 +1,6 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 
-// const UsersList = (user) => {
-//     return (<div>{user}</div>);
-// };
 
 const ProjectInfo = (projects) => {
     const {projectId} = useParams();
@@ -52,8 +49,6 @@ const ProjectInfo = (projects) => {
                          data-bs-parent="#accordionExample">
                         <div className="accordion-body">
                             {project.users}
-                            {/*{project.users.forEach(user => '<div>' + user + '</div>')}*/}
-                            {/*{project.users.map((user) => <UsersList user={user}/>)}*/}
                         </div>
                     </div>
                 </div>
