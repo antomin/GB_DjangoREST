@@ -6,7 +6,7 @@ class ProjectForm extends React.Component {
         this.state = {
             'name': '',
             'repo_url': '',
-            'users': ''
+            'users': this.props.users[0].id
         }
     }
 
@@ -32,8 +32,11 @@ class ProjectForm extends React.Component {
                     </div>
                     <div className="form-group mb-4">
                         <label htmlFor="author">Участники проекта*</label>
-                        <input type="number" className="form-control" name="users"
-                               value={this.state.users} onChange={(event) => this.handleChange(event)}/>
+                        <select multiple className="form-control" name="users"
+                                onChange={(event) => this.handleChange(event)}>
+                            {this.props.users.map((user) => <option
+                                value={user.id}>{user.firstName} {user.lastName}</option>)}
+                        </select>
                     </div>
                     <div className="form-group mb-4">
                         <label htmlFor="author">Ссылка на репозиторий</label>
