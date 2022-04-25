@@ -19,6 +19,7 @@ class App extends React.Component {
         this.state = {
             'users': [],
             'projects': [],
+            'filteredProjects': [],
             'todo': [],
             'token': '',
             'auth': {'username': '', 'is_auth': false}
@@ -46,7 +47,7 @@ class App extends React.Component {
 
         axios.get('http://127.0.0.1:8000/api/projects/', {headers}).then(response => {
             const projects = response.data;
-            this.setState({'projects': projects.results});
+            this.setState({'projects': projects.results, 'filteredProjects': projects.results});
         }).catch(error => console.log(error));
 
         axios.get('http://127.0.0.1:8000/api/todo/', {headers}).then(response => {
@@ -115,31 +116,47 @@ class App extends React.Component {
         )
     }
 
+    filterString(text) {
+        if (!text) {
+            this.setState({filteredProjects: this.state.projects});
+            return;
+        }
+        const filteredProjects = this.state.projects.filter((project) => {
+            return project.name.toLowerCase().includes(text.toLowerCase())
+        })
+        this.setState({filteredProjects: filteredProjects})
+    }
+
     render() {
-        return (<div>
-            <BrowserRouter>
-                <NavMenu auth={this.state.auth} logout={() => this.logout()}/>
-                <Switch>
-                    <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
-                    <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}
-                                                                                deleteProject={(id) => this.deleteProject(id)}/>}/>
-                    <Route exact path='/todo' component={() => <TodoList tasks={this.state.todo}/>}/>
+        return (
+            <div>
+                <BrowserRouter>
+                    <NavMenu auth={this.state.auth} logout={() => this.logout()}
+                             filterString={(text) => this.filterString(text)}/>
+                    <Switch>
+                        <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
+                        <Route exact path='/projects'
+                               component={() => <ProjectList projects={this.state.filteredProjects}
+                                                             deleteProject={(id) => this.deleteProject(id)}/>}/>
+                        <Route exact path='/todo' component={() => <TodoList tasks={this.state.todo}/>}/>
 
-                    <Route exact path='/login' component={() => <LoginForm
-                        login={(username, password) => this.login(username, password)}/>}/>
+                        <Route exact path='/login' component={() => <LoginForm
+                            login={(username, password) => this.login(username, password)}/>}/>
 
-                    <Route exact path='/projects/create' component={() => <ProjectForm
-                        createProject={(name, users, repo_url) => this.createProject(name, users, repo_url)}
-                        users={this.state.users}/>}/>
+                        <Route exact path='/projects/create' component={() => <ProjectForm
+                            createProject={(name, users, repo_url) => this.createProject(name, users, repo_url)}
+                            users={this.state.users}/>}/>
 
-                    <Route path='/projects/:projectId'
-                           component={() => <ProjectInfo projects={this.state.projects} users={this.state.users}/>}/>
+                        <Route path='/projects/:projectId'
+                               component={() => <ProjectInfo projects={this.state.projects}
+                                                             users={this.state.users}/>}/>
 
-                    <Route component={NotFound404}/>
-                </Switch>
-            </BrowserRouter>
-            <Footer/>
-        </div>)
+                        <Route component={NotFound404}/>
+                    </Switch>
+                </BrowserRouter>
+                <Footer/>
+            </div>
+        )
     }
 }
 
