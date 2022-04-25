@@ -16,6 +16,14 @@ class ProjectForm extends React.Component {
         )
     }
 
+    handleUsersChange(event) {
+        let users = []
+        for (let i = 0; i < event.target.selectedOptions.length; i++) {
+            users.push(event.target.selectedOptions[i].value);
+        }
+        this.setState({users: users})
+    }
+
     handleSubmit(event) {
         this.props.createProject(this.state.name, this.state.users, this.state.repo_url)
         event.preventDefault();
@@ -33,7 +41,7 @@ class ProjectForm extends React.Component {
                     <div className="form-group mb-4">
                         <label htmlFor="author">Участники проекта*</label>
                         <select multiple className="form-control" name="users"
-                                onChange={(event) => this.handleChange(event)}>
+                                onChange={(event) => this.handleUsersChange(event)}>
                             {this.props.users.map((user) => <option
                                 value={user.id}>{user.firstName} {user.lastName}</option>)}
                         </select>

@@ -2,12 +2,6 @@ import React from "react";
 import {useParams} from "react-router-dom";
 
 
-const UserItem = ({user}) => {
-    return (
-        <li>{user}</li>
-    )
-}
-
 const ProjectInfo = ({projects, users}) => {
     const {projectId} = useParams();
     const project = projects.find((prj) => prj.id === Number(projectId));
@@ -60,7 +54,7 @@ const ProjectInfo = ({projects, users}) => {
                          data-bs-parent="#accordionExample">
                         <div className="accordion-body">
                             <ul className="list-unstyled">
-                                {project.users.map((user) => <UserItem user={handleUserString(user)}/>)}
+                                {project.users.map((user) => <li>{handleUserString(user)}</li>)}
                             </ul>
                         </div>
                     </div>

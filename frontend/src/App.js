@@ -106,8 +106,8 @@ class App extends React.Component {
 
     createProject(name, users, repo_url) {
         const headers = this.get_headers();
-        const admin_user = this.state.users.filter((user) => user.username === this.state.auth.username)
-        const data = {name: name, admin_user: admin_user[0].id, users: users, repo_url: repo_url}
+        const admin_user = this.state.users.find((user) => user.username === this.state.auth.username)
+        const data = {name: name, admin_user: admin_user.id, users: users, repo_url: repo_url}
         axios.post('http://127.0.0.1:8000/api/projects/', data, {headers}).then(
             () => this.load_data()
         ).catch(
