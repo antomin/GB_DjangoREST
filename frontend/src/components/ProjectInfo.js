@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 
 const ProjectInfo = ({projects, users}) => {
     const {projectId} = useParams();
-    const project = projects.find((prj) => prj.id === Number(projectId));
+    const project = projects.find((project) => project.id === Number(projectId));
 
     function handleUserString(userId) {
         const user = users.find(users => users.id === Number(userId))
