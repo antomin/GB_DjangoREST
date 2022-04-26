@@ -2,7 +2,6 @@ from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-
 from todoapp.filters import ProjectFilter, ToDoFilter
 from todoapp.models import Project, ToDo
 from todoapp.paginators import (ProjectPageNumberPagination,

@@ -1,3 +1,5 @@
+import todoapp.views as todoapp
+import usersapp.views as usersapp
 from django.contrib import admin
 from django.urls import include, path
 from drf_yasg import openapi
@@ -8,9 +10,6 @@ from rest_framework.permissions import AllowAny
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (TokenObtainPairView,
                                             TokenRefreshView)
-
-import todoapp.views as todoapp
-import usersapp.views as usersapp
 
 schema_view = get_schema_view(
     openapi.Info(

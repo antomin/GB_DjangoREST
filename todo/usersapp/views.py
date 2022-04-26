@@ -1,6 +1,5 @@
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
-
 from usersapp.models import User
 from usersapp.serializers import UserModelSerializer, UserModelSerializerVer02
 
